@@ -1,15 +1,15 @@
-#Albix 2.1 (a.k.a. PostX 0.4.4 revision) Copyright (c) 2017 JJ Posti <techtimejourney.net> 
-#This program comes with ABSOLUTELY NO WARRANTY; 
-#for details see: http://www.gnu.org/copyleft/gpl.html. 
-#This is free software, and you are welcome to redistribute it under 
-#GPL Version 2, June 1991")
-#!/usr/bin/env python
-from PyQt5 import QtCore, QtGui, QtWidgets
+#Albix 3.0 (PostX 0.5 revision 1) Copyright (c) 2017 JJ Posti <techtimejourney.net> 
+#This program comes with ABSOLUTELY NO WARRANTY;  #for details see: http://www.gnu.org/copyleft/gpl.html. 
+#This is free software, and you are welcome to redistribute it under  #GPL Version 2, June 1991")
+#!/usr/bin/env python3
+from PyQt5 import QtCore, QtGui, QtWidgets 
 from PyQt5.QtCore import *  
 from PyQt5.QtGui import *  
 from PyQt5.QtWidgets import *
 import subprocess, os, sys, pygame
-
+from os.path import basename
+from mutagen.mp3 import MP3
+import datetime
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -26,7 +26,8 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(900, 400)
+        MainWindow.setStyleSheet("color:#ffffff; background-color:#353535; border: 2px solid #353535; border-radius: 3px;font-size: 12px;")
+        MainWindow.resize(700, 350)
         MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         MainWindow.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
         MainWindow.setTabShape(QTabWidget.Triangular)
@@ -40,6 +41,8 @@ class Ui_MainWindow(object):
 #Add song        
         self.Add = QPushButton(self.centralwidget)
         self.Add.setText(_fromUtf8(""))
+        self.Add.setStyleSheet("QPushButton{color:#ffffff; background-color:#353535; border: 2px solid #353535; border-radius: 3px;font-size: 12px;}"
+        "QPushButton:hover{background-color:#1b486a;}")  
         icon = QIcon()
         icon.addPixmap(QPixmap(_fromUtf8(":/icons/add.png")), QIcon.Normal, QIcon.Off)
         self.Add.setIcon(icon)
@@ -47,10 +50,11 @@ class Ui_MainWindow(object):
         self.Add.setObjectName(_fromUtf8("Add"))
         self.horizontalLayout.addWidget(self.Add)
         self.Add.clicked.connect(self.dialog)
-
 #Play song        
         self.Play = QPushButton(self.centralwidget)
         self.Play.setText(_fromUtf8(""))
+        self.Play.setStyleSheet("QPushButton{color:#ffffff; background-color:#353535; border: 2px solid #353535; border-radius: 3px;font-size: 12px;}"
+        "QPushButton:hover{background-color:#1b486a;}")  
         icon1 = QIcon()
         icon1.addPixmap(QPixmap(_fromUtf8(":/icons/media-playback-start.png")), QIcon.Normal, QIcon.Off)
         self.Play.setIcon(icon1)
@@ -60,41 +64,47 @@ class Ui_MainWindow(object):
         self.Play.clicked.connect(self.play)
         self.Play.clicked.connect(self.play_button)
         self.Play.setEnabled(False)
-        self.Play.clicked.connect(self.play_selected)
-        
+        self.Play.clicked.connect(self.getme)        
 #Remove Playlist items       
         self.Remove = QPushButton(self.centralwidget)
         self.Remove.setText(_fromUtf8(""))
+        self.Remove.setStyleSheet("QPushButton{color:#ffffff; background-color:#353535; border: 2px solid #353535; border-radius: 3px;font-size: 12px;}"
+        "QPushButton:hover{background-color:#1b486a;}")  
         icon2 = QIcon()
         icon2.addPixmap(QPixmap(_fromUtf8(":/icons/editdelete.png")), QIcon.Normal, QIcon.Off)
         self.Remove.setIcon(icon2)
         self.Remove.setIconSize(QtCore.QSize(32, 32))
-        self.Remove.setObjectName(_fromUtf8("Remove from playlist"))
+        self.Remove.setObjectName(_fromUtf8("Remove item from playlist"))
         self.horizontalLayout.addWidget(self.Remove)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.Remove.clicked.connect(self.deleting)
-        self.Remove.clicked.connect(self.stop)
-        self.Remove.setEnabled(False)
-        
+        self.Remove.setEnabled(False)        
 #Song Listing        
         self.listWidget = QListWidget(self.centralwidget)
         self.listWidget.setObjectName(_fromUtf8("listwidget"))
+        self.listWidget.setStyleSheet("QListWidget{color:#ffffff; background-color:#1b1b1b; border: 2px solid #353535; border-radius: 3px;font-size: 12px;}"
+        "QPushButton:hover{background-color:#1b486a;}")  
         self.verticalLayout.addWidget(self.listWidget)
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))        
 #Pause Song        
         self.Pause = QPushButton(self.centralwidget)
         self.Pause.setText(_fromUtf8(""))
+        self.Pause.setStyleSheet("QPushButton{color:#ffffff; background-color:#353535; border: 2px solid #353535; border-radius: 3px;font-size: 12px;}"
+        "QPushButton:hover{background-color:#1b486a;}")  
         icon3 = QIcon()
         icon3.addPixmap(QPixmap(_fromUtf8(":/icons/gtk-media-pause.png")), QIcon.Normal, QIcon.Off)
         self.Pause.setIcon(icon3)
         self.Pause.setIconSize(QtCore.QSize(32, 32))
         self.Pause.setObjectName(_fromUtf8("Pause"))
         self.Pause.clicked.connect(self.paused)
+        self.Pause.clicked.connect(self.getme)
         self.horizontalLayout_2.addWidget(self.Pause)                
 #Stop Song        
         self.Stop = QPushButton(self.centralwidget)
         self.Stop.setText(_fromUtf8(""))
+        self.Stop.setStyleSheet("QPushButton{color:#ffffff; background-color:#353535; border: 2px solid #353535; border-radius: 3px;font-size: 12px;}"
+        "QPushButton:hover{background-color:#1b486a;}")  
         icon4 = QIcon()
         icon4.addPixmap(QPixmap(_fromUtf8(":/icons/stock_media-stop.png")), QIcon.Normal, QIcon.Off)
         self.Stop.setIcon(icon4)
@@ -103,69 +113,74 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.Stop)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.Stop.clicked.connect(self.stop)
-        self.Stop.setEnabled(False)        
+        self.Stop.setEnabled(True)        
 #Placeholder variables
-        self.Pause.setEnabled(False)
+        self.Pause.setEnabled(True)
         self.Paused = False
         self.Stopped=False
-
 #Seconds navigator        
-        self.horizontalSlider = QLineEdit(self.centralwidget)
+        self.horizontalSlider = QSlider(self.centralwidget)
+        self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider.setObjectName(_fromUtf8("horizontalSlider"))
-        self.horizontalSlider.setPlaceholderText("Jump to time value (enter seconds)")
+        self.horizontalSlider.setTickPosition(QSlider.TicksBelow)
+        self.horizontalSlider.setTickInterval(1)
+        self.horizontalSlider.setRange(0, 100)
+        self.horizontalSlider.setToolTip('Jump to position')        
         self.horizontalSlider.setFixedSize(250, 30)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.horizontalSlider.returnPressed.connect(self.navigate)        
 #Statusbar        
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         self.statusbar.addPermanentWidget(self.horizontalSlider)
         MainWindow.setStatusBar(self.statusbar)
-        self.statusbar.showMessage('Welcome to Albix 2.1. Please add some music.')        
-                
+        self.statusbar.showMessage('Add music.Create new playlist when playback segment is done.')                                                                  
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "Albix Player", None))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Albix Player 3.0", None))
         self.Add.setToolTip(_translate("MainWindow", "Add to playlist", None))
         self.Play.setToolTip(_translate("MainWindow", "Play/Next song", None))
-        self.Remove.setToolTip(_translate("MainWindow", "Remove from playlist", None))
+        self.Remove.setToolTip(_translate("MainWindow", "Remove item from playlist", None))
         self.Pause.setToolTip(_translate("MainWindow", "Pause playback", None))
         self.Stop.setToolTip(_translate("MainWindow", "Stop playback", None))
-
 #Add files to playlist  
     def dialog(self):
+        self.listWidget.clear()
+        self.stop()
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        path, _ = QFileDialog.getOpenFileNames(None,"QFileDialog.getOpenFileNames()", "","All Files (*);;Mp3 Files (*.mp3) ;;Ogg Files (*.ogg)", options=options)
+        path, _ = QFileDialog.getOpenFileNames(None,"Choose music files. Use files that are within the same directory.", "","All Files (*);;Mp3 Files (*.mp3) ;;Ogg Files (*.ogg)", options=options)
         if path:
             listing=[]
             for x in path:
-                listing.append(x)
-                print listing
+                dirs=os.path.dirname(x)
+                os.chdir(os.path.dirname(x))
+                print dirs
+                bases=(os.path.basename(x))
+                listing.append(bases)
             self.listWidget.addItems(listing)
             self.pathway=listing
             self.numbers=len(listing)
             print self.numbers
             self.Remove.setEnabled(True)
             self.Play.setEnabled(True)
-            self.statusbar.showMessage('Holding shift key while pressing Play activates "play only a single song mode".')        
-            return self.pathway
-            
+            return self.pathway            
 #Delete Files from playlist
     def deleting(self):
         for item in self.listWidget.selectedItems():
             self.listWidget.takeItem(self.listWidget.row(item))
         self.Play.setEnabled(True)   
-
 #Play song(s)
     def play(self,item): 
-        xlist= len(self.pathway) 
+        self.statusbar.showMessage('')        
+        xlist= len(self.pathway)
+        self.horizontalSlider.valueChanged[int].connect(self.position)
         if xlist > 1:
             i= 0
             song=(self.pathway.pop(i))
             ax=os.path.basename(song)
+            self.songs=song
             self.single=ax
             self.Stop.setEnabled(True)
             self.Pause.setEnabled(True)
@@ -178,7 +193,6 @@ class Ui_MainWindow(object):
             self.ls=int(self.x)
             self.marking=str(self.x)
             self.seconds_here=self.marking[0:3]
-            print self.ls                        
         
         elif xlist == 1:
             i= 0
@@ -187,6 +201,7 @@ class Ui_MainWindow(object):
             song=(self.pathway.pop(i))
             ax=os.path.basename(song)
             self.single=ax
+            self.songs=song
 
             self.Stop.setEnabled(True)
             pygame.mixer.init()
@@ -197,71 +212,91 @@ class Ui_MainWindow(object):
             self.ls=int(self.x)
             self.marking=str(self.x)
             self.seconds_here=self.marking[0:3]
-            print self.ls
-            
-            return self.single, self.ls, self.seconds_here
-
+            self.songs=song
+            return self.songs, self.single, self.ls, self.seconds_here
 #Play button checks                
     def play_button(self):
         self.numbersx= len(self.pathway)        
         
         if self.numbersx >= 1:
            self.Play.setEnabled(True)
-           self.statusbar.showMessage('Playing:' + self.single + '  ' + self.seconds_here + ' ' +	 'seconds')        
-           
-        if self.numbersx == 0:
-            self.Play.setEnabled(False)
-            self.statusbar.showMessage('Create new playlist after playback segment is done or play a single song.')        
-            self.statusbar.showMessage('Playing:' + self.single + '  ' + self.seconds_here + ' ' +	 'seconds')        
-                                        
+           self.getme()
+        elif self.numbersx == 0:
+            try:
+                self.Play.setEnabled(False)
+                self.getme()
+            except Exception as e:
+                print "Error.No next item."
 #Pause / Unpause
     def paused(self,widget):
         if self.Paused:
-            pygame.mixer.music.unpause()
-            self.Paused = False
-            self.statusbar.showMessage('Playing:' + self.single + '  ' + self.seconds_here + ' ' +	 'seconds')        
+            try:
+                pygame.mixer.music.unpause()
+                self.Stop.setEnabled(True)
+                self.Paused = False
+            except Exception as e:
+                print "Nothing to pause."
         else:
-            pygame.mixer.music.pause()
-            self.Paused = True
-            self.statusbar.showMessage('Playback paused. Press pause again to continue.')
-
-#Play selected song - shift select
-    def play_selected(self):            
-        if qApp.keyboardModifiers() & Qt.ShiftModifier:
-            self.Play.setEnabled(True)
-            x=self.listWidget.currentItem()
-            value = x.text()
-            value1=os.path.basename(value)
-            song=str(value)
-            self.Pause.setEnabled(True)
-            self.Stop.setEnabled(True)
-            pygame.mixer.init()
-            pygame.mixer.music.load(song)
-            pygame.mixer.music.play(0,0)
-            a = pygame.mixer.Sound(song)
-            self.x=a.get_length()
-            self.ls=int(self.x)
-            self.marking=str(self.x)
-            self.seconds_here=self.marking[0:3]
-            print self.ls
-            self.statusbar.showMessage('Playing:' + value1 + '  ' + self.seconds_here + ' ' +	 'seconds')        
+            try:
+                pygame.mixer.music.pause()
+                self.Stop.setEnabled(False)
+                self.Paused = True
+            except Exception as e:
+                print "Error while pausing."
 #Stop song
     def stop(self):
         if self.Stopped:
-            self.statusbar.showMessage('')
+            try:
+                self.statusbar.showMessage('')
+            except Exception as e:
+				print "Error. Nothing to stop."
         else:
-            self.Stop.setEnabled(False)
-            pygame.mixer.music.stop()
-            self.Play.setEnabled(True)
-            self.Pause.setEnabled(False)
-            self.statusbar.showMessage('Playlist stopped. Create new or play a single song.' )        
-            self.statusbar.showMessage('Holding shift key while pressing Play activates "play only this song mode".')        			
+            try:
+                self.Stop.setEnabled(True)
+                pygame.mixer.music.stop()
+                pygame.mixer.quit()
+                self.horizontalSlider.valueChanged[int].disconnect(self.position)
 
-#Seconds navigator    
-    def navigate(self):
-        self.x=int(self.horizontalSlider.text())        
-        pygame.mixer.music.play(0, self.x)            
-                                            
+                self.Play.setEnabled(False)
+                self.Pause.setEnabled(False)
+                self.statusbar.showMessage('Playlist stopped. Create a new playlist.' )        
+            except Exception as e:
+                print "Error. Nothing to stop."
+
+#Duration         
+    def getme(self):
+        try:
+            self.song = MP3(self.songs) 
+            self.seconds= int(self.song.info.length)
+            self.total=str(datetime.timedelta(seconds=self.seconds))
+            print self.total
+            self.statusbar.showMessage('Playing: ' + self.single + '  ' + self.total)
+            return self.song.info.length        
+        except Exception as e:
+            print("Error. Not an mp3.")
+            try:
+                self.total=str(datetime.timedelta(seconds=self.seconds_here))
+                self.statusbar.showMessage('Playing: ' + self.single + '  ' + self.seconds_here)
+            except Exception as e:
+                print "Trying other supported formats."
+						       
+#Jump to position    
+    def position(self, value):
+        x=self.horizontalSlider.value()
+        try:
+            pros= self.song.info.length/100
+            time=(x * pros)
+            dur=str(datetime.timedelta(seconds=time))
+            print dur
+            pygame.mixer.music.play(0, time)            
+        except Exception as e:
+             print("Error. Not an mp3.")
+             pros= self.x/100
+             time=(x * pros)
+             dur=str(datetime.timedelta(seconds=time))
+             print dur
+             pygame.mixer.music.play(0, time) 
+#####################################                    
 qt_resource_data = "\
 \x00\x00\x04\x8a\
 \x89\

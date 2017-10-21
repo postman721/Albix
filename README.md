@@ -4,7 +4,7 @@ Albix music player (Python+Pygame)
 ![albix3](https://user-images.githubusercontent.com/29865797/31854798-edaf06e2-b6a7-11e7-8bce-539a77f4d6a8.jpg)
 
 
-License
+<b>License</b>
 
 #Albix 3.0 (PostX 0.5 revision 1.) Copyright (c) 2017 JJ Posti <techtimejourney.net>
 
@@ -18,7 +18,7 @@ License
 
  ___________________________
 
-<b>Dependencies:<b>
+<b>Dependencies:</b>
 
 python-qt5, python-pygame, python-mutagen
 
@@ -28,7 +28,7 @@ python,python3. In almost every case, python is already installed on a desktop L
 
  ________________________
 
-<b>New & Changed features in Albix 3.0<b>
+<b>New & Changed features in Albix 3.0</b>
 
 – Outlook is now done via CSS. Colours are dark and easy for the eyes. and the generic outlook is gone.
 
@@ -52,7 +52,7 @@ The dialog for adding files is now a bit more helpful than it was before.
 
 _________________
 
-<b>Features that come from earlier versions<b>
+<b>Features that come from earlier versions</b>
 
 – Add multiple songs to the list.
 
@@ -70,7 +70,7 @@ The playback needs to be triggered manually by pressing the play/next button.
 
 _____________________
 
-<b>Other instructions.<b>
+<b>Other instructions.</b>
 
 If you have letters or markings that show up as squares within the file´s name then change them to something else, because otherwise the playback fails.
 
@@ -78,7 +78,7 @@ When adding files you can add them at any order. To choose multiple files you ca
 
 
 
-<b>To run the program<b>
+<b>To run the program</b>
 
 Open terminal and do: python albix.py
 

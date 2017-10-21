@@ -4,7 +4,7 @@ Albix music player (Python+Pygame)
 ![albix3](https://user-images.githubusercontent.com/29865797/31854798-edaf06e2-b6a7-11e7-8bce-539a77f4d6a8.jpg)
 
 
-<b>License<b>
+License
 
 #Albix 3.0 (PostX 0.5 revision 1.) Copyright (c) 2017 JJ Posti <techtimejourney.net>
 

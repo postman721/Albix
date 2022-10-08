@@ -64,7 +64,7 @@ _____________________
 
 When adding files you can add them at any order. To choose multiple files you can, for example, hold the Control-key and click the files individually to select them. Alternatively, you can click and hold-down a mouse button and paint all the songs blue(selected) by moving your mouse.
 
-As of know: There is no support for playing the entire playlist. For now, songs need to played one by one. 
+As of now: There is no support for playing the entire playlist. For now, songs need to played one by one. 
 
 
 <b>To run the program</b>

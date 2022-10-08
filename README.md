@@ -1,10 +1,14 @@
 # Albix
 Albix music player (Python+Pygame)
 
-![albix_mp3](https://user-images.githubusercontent.com/29865797/194679584-7040e5f4-931e-423d-961d-9d6d852d1719.png)
+![albix_mp3](https://user-images.githubusercontent.com/29865797/194680471-7360a825-a4cd-4017-aa1f-499e3312065a.png)
+
+</br>
+</br>
 
 
-![albix_ogg](https://user-images.githubusercontent.com/29865797/194679595-34b2ba4a-d724-4846-ac01-54fc2ebd6c63.png)
+
+![albix_ogg](https://user-images.githubusercontent.com/29865797/194680473-e8d638e5-f5bd-43ea-9006-bc8663726223.png)
 
 
 <b>License</b>

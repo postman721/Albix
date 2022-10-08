@@ -1,12 +1,15 @@
 # Albix
 Albix music player (Python+Pygame)
 
-![albix3](https://user-images.githubusercontent.com/29865797/31854798-edaf06e2-b6a7-11e7-8bce-539a77f4d6a8.jpg)
+![albix_mp3](https://user-images.githubusercontent.com/29865797/194679584-7040e5f4-931e-423d-961d-9d6d852d1719.png)
+
+
+![albix_ogg](https://user-images.githubusercontent.com/29865797/194679595-34b2ba4a-d724-4846-ac01-54fc2ebd6c63.png)
 
 
 <b>License</b>
 
-#Albix 3.0 (PostX 0.5 revision 1.) Copyright (c) 2017 JJ Posti <techtimejourney.net>
+#Albix 3.5 Copyright (c) 2017 JJ Posti <techtimejourney.net>
 
 #This program comes with ABSOLUTELY NO WARRANTY;
 
@@ -19,63 +22,45 @@ Albix music player (Python+Pygame)
  ___________________________
 
 <b>Dependencies:</b>
+</br>
 
-python-qt5, python-pygame, python-mutagen
+Pygame from pip enables mp3 support. We are using that instead of default Debian package.
 
-The packages below (or similar) might be needed to get installed if the above packages do not pull them as dependencies (for some odd reason):
+</br>
+sudo apt install python3-pyqt5 python3-mutagen && sudo apt install python3-pip && pip3 install pygame
 
-python,python3. In almost every case, python is already installed on a desktop Linux system.
 
- ________________________
 
-<b>New & Changed features in Albix 3.0</b>
+</br>
+</br>
 
-– Outlook is now done via CSS. Colours are dark and easy for the eyes. and the generic outlook is gone.
 
-– Jump to a position. New: This is now an actual slider – instead of an input box. Also, if you open Albix via terminal you can see the jump position time value printed in to terminal. Time value is not yet integrated to the Gui.
+<b>Features</b>
 
--Albix 3.0 fetches duration of an ogg file and – since 3.0 – also mp3´s duration info via python-mutagen. Duration info gets printed to the statusbar along with the playing item name. If Albix fails to fetch the duration info, or info in general, nothing may get printed to the statusbar. If info fetching fails, you might experience some trouble using position slider – or you might see partial and inaccurate info.
+- Add multiple songs to the list. Press and hold CTRL when selecting.
 
--Play a single song mode, which was present in the older version is now removed due to
+- Remove a selected song from the playlist.
 
-its problematic handling of mp3 & ogg files.
+- Toggle Pause/Play.
 
--If you stop playback by pressing the stop then you must create a new playlist.
+- Stop playback.
 
-When you add files to a playlist the old entries will automatically clear out.
+- Play song (Via buttons or double-click).
 
-The dialog for adding files is now a bit more helpful than it was before.
 
-–Albix no longer adds full path of the song to the list. Instead, something like sample.mp3 gets added. This means that you need to add files that are in the same directory (Albix needs to be able to parse the full pathway correctly behind the scenes).
+- Navigation slider for mp3.
 
--Albix 3.0 has a plenty of error handling features in it. You should not need to worry about crashing the Gui anymore. Error handling should capture all the common exceptions that might occur in a regular usage.
+- Song lenght for mp3.
 
-_________________
-
-<b>Features that come from earlier versions</b>
-
-– Add multiple songs to the list.
-
-– Remove a selected song from the playlist.
-
-– Toggle Pause/Play.
-
-– Stop playback.
-
-– Play the next song.
-
--Currently, Albix supports playing multiple songs in a row.
-
-The playback needs to be triggered manually by pressing the play/next button.
+- Statusbar for info.
 
 _____________________
 
 <b>Other instructions.</b>
 
-If you have letters or markings that show up as squares within the file´s name then change them to something else, because otherwise the playback fails.
-
 When adding files you can add them at any order. To choose multiple files you can, for example, hold the Control-key and click the files individually to select them. Alternatively, you can click and hold-down a mouse button and paint all the songs blue(selected) by moving your mouse.
 
+As of know: There is no support for playing the entire playlist. For now, songs need to played one by one. 
 
 
 <b>To run the program</b>
@@ -85,5 +70,4 @@ Open terminal and do: python albix.py
 If you need to make the file executable: chmod +x albix.py
 
 _____________________________________
-Original post is at:
-https://www.techtimejourney.net/albix-3-0-arrives/
+

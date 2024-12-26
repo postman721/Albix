@@ -1,77 +1,57 @@
-# Albix
-Albix music player (Python+Pygame)
+# Albix Player 4.0
 
-![albix_mp3](https://user-images.githubusercontent.com/29865797/194680471-7360a825-a4cd-4017-aa1f-499e3312065a.png)
+Albix Player is a sleek and user-friendly music player built with Python and PyQt5. It allows you to manage and enjoy your music library with ease, offering essential features for a seamless audio experience.
 
-</br>
-</br>
+![albix](https://github.com/user-attachments/assets/22a2ae24-1626-4b78-9125-490f25664030)
 
+### Features
 
+- **Add Songs:** Easily add multiple songs to your playlist.
+- **Play/Pause:** Control playback with intuitive play and pause buttons.
+- **Stop Playback:** Completely stop the current song.
+- **Remove Songs:** Remove selected songs from your playlist.
+- **Playback Slider:** Seek through songs using the playback slider.
+- **Volume Control:** Adjust the playback volume to your preference.
+- **Playlist Management:** Efficiently manage your list of songs.
+- **Error Handling:** Gracefully handles playback errors and missing files.
+- **Responsive UI:** Interactive buttons with hover effects for enhanced user experience.
+- **Radio Stations**: Stream live radio stations directly from the application.
 
-![albix_ogg](https://user-images.githubusercontent.com/29865797/194680473-e8d638e5-f5bd-43ea-9006-bc8663726223.png)
+![radio](https://github.com/user-attachments/assets/34b5aa4a-0288-4f7a-8a69-9f649ba454e1)
 
+### Installation - with all media packages
+```bash
+sudo apt-get update
+sudo apt-get install \
+  python3-pyqt5 \
+  python3-pyqt5.qtmultimedia \
+  libqt5multimedia5-plugins \
+  gstreamer1.0-plugins-base \
+  gstreamer1.0-plugins-good \
+  gstreamer1.0-plugins-bad \
+  gstreamer1.0-plugins-ugly \
+  gstreamer1.0-libav
 
-<b>License</b>
+```
 
-#Albix 3.5 Copyright (c) 2017 JJ Posti <techtimejourney.net>
+### Run Albix Player
 
-#This program comes with ABSOLUTELY NO WARRANTY;
+Navigate to the project directory and execute the player script.
 
-#for details see: http://www.gnu.org/copyleft/gpl.html.
+python3 albix_player.py
 
-#This is free software, and you are welcome to redistribute it under
+### Usage
 
-#GPL Version 2, June 1991″)
-
- ___________________________
-
-<b>Dependencies:</b>
-</br>
-
-Pygame from pip enables mp3 support. We are using that instead of default Debian package.
-
-</br>
-sudo apt install python3-pyqt5 python3-mutagen && sudo apt install python3-pip && pip3 install pygame
-
-
-
-</br>
-</br>
-
-
-<b>Features</b>
-
-- Add multiple songs to the list. Press and hold CTRL when selecting.
-
-- Remove a selected song from the playlist.
-
-- Toggle Pause/Play.
-
-- Stop playback.
-
-- Play song (Via buttons or double-click).
-
-
-- Navigation slider for mp3.
-
-- Song lenght for mp3.
-
-- Statusbar for info.
-
-_____________________
-
-<b>Other instructions.</b>
-
-When adding files you can add them at any order. To choose multiple files you can, for example, hold the Control-key and click the files individually to select them. Alternatively, you can click and hold-down a mouse button and paint all the songs blue(selected) by moving your mouse.
-
-As of now: There is no support for playing the entire playlist. For now, songs need to played one by one. 
+    Launch the Application: Run the Albix Player script to open the application window.
+    Add Songs: Click on the "Add Song" button to select and add music files to your playlist.
+    Play/Pause: Use the "Play" button to start playback. The button toggles to "Pause" when playing.
+    Stop Playback: Click the "Stop" button to halt playback completely.
+    Remove Songs: Select one or more songs from the playlist and click "Remove" to delete them.
+    Seek Through Songs: Drag the playback slider to jump to a specific part of the song.
+    Adjust Volume: Use the volume slider to increase or decrease the playback volume.
+    Double-Click to Play: Double-click any song in the playlist to start playing it immediately.
 
 
-<b>To run the program</b>
+## License
 
-Open terminal and do: python albix.py
-
-If you need to make the file executable: chmod +x albix.py
-
-_____________________________________
-
+Albix Player 4.0 is released under the GNU General Public License v2. This program comes with ABSOLUTELY NO WARRANTY.

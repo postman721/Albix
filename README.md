@@ -15,9 +15,9 @@ Albix Player is a sleek and user-friendly music player built with Python and PyQ
 - **Playlist Management:** Efficiently manage your list of songs.
 - **Error Handling:** Gracefully handles playback errors and missing files.
 - **Responsive UI:** Interactive buttons with hover effects for enhanced user experience.
+- **Video Playback**: Play local video files.
 - **Radio Stations**: Stream live radio stations directly from the application.
 ![radio](https://github.com/user-attachments/assets/34b5aa4a-0288-4f7a-8a69-9f649ba454e1)
-- **Video Playback**: Play local video files.
 
 
 ### Installation - with all media packages

@@ -2,7 +2,7 @@
 
 Albix Player is a sleek and user-friendly music player built with Python and PyQt5. It allows you to manage and enjoy your music library with ease, offering essential features for a seamless audio experience.
 
-![albix](https://github.com/user-attachments/assets/22a2ae24-1626-4b78-9125-490f25664030)
+![Albix](https://github.com/user-attachments/assets/729bea97-0ad1-4686-87d1-9547b7234c43)
 
 ### Features
 

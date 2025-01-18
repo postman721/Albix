@@ -1,4 +1,4 @@
-# Albix Player 4.0
+# Albix Player 4.5
 
 Albix Player is a sleek and user-friendly music player built with Python and PyQt5. It allows you to manage and enjoy your music library with ease, offering essential features for a seamless audio experience.
 
@@ -16,8 +16,9 @@ Albix Player is a sleek and user-friendly music player built with Python and PyQ
 - **Error Handling:** Gracefully handles playback errors and missing files.
 - **Responsive UI:** Interactive buttons with hover effects for enhanced user experience.
 - **Radio Stations**: Stream live radio stations directly from the application.
-
 ![radio](https://github.com/user-attachments/assets/34b5aa4a-0288-4f7a-8a69-9f649ba454e1)
+- **Video Playback**: Play local video files.
+
 
 ### Installation - with all media packages
 ```bash
@@ -38,7 +39,7 @@ sudo apt-get install \
 
 Navigate to the project directory and execute the player script.
 
-python3 albix_player.py
+python3 albix.py
 
 ### Usage
 
@@ -50,8 +51,10 @@ python3 albix_player.py
     Seek Through Songs: Drag the playback slider to jump to a specific part of the song.
     Adjust Volume: Use the volume slider to increase or decrease the playback volume.
     Double-Click to Play: Double-click any song in the playlist to start playing it immediately.
+    F11: Toggle full screen.
+    Keyboard keypress p: Toggle play/pause.
 
 
 ## License
 
-Albix Player 4.0 is released under the GNU General Public License v2. This program comes with ABSOLUTELY NO WARRANTY.
+Albix Player 4.5 is released under the GNU General Public License v2. This program comes with ABSOLUTELY NO WARRANTY.

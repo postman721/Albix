@@ -64,4 +64,4 @@ python3 albix.py
 
 ## License
 
-Albix Player 4.5 is released under the GNU General Public License v2. This program comes with ABSOLUTELY NO WARRANTY.
+Albix Player 5.0 is released under the GNU General Public License v2. This program comes with ABSOLUTELY NO WARRANTY.

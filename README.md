@@ -1,7 +1,15 @@
-# Albix Player 4.5
+# Albix Player 5.0
 
 Albix Player is a sleek and user-friendly media player built with Python and PyQt5.
-![Albix](https://github.com/user-attachments/assets/729bea97-0ad1-4686-87d1-9547b7234c43)
+![Image](https://github.com/user-attachments/assets/789639ea-f0e0-4463-bd0d-bda271deb813)
+
+New features (besides the original functionality):
+ - Next/Previous track buttons
+ - Shuffle & Repeat toggle
+ - Mute button
+ - Save & Load playlist (JSON-based)
+ - Add custom radio station
+ - Drag & drop support for adding files
 
 ### Features
 
